@@ -2,6 +2,49 @@ window.onload = function () {
   // 멀티미디어 로드완료시 실행
 };
 $(document).ready(function () {
+  // 주메뉴 작업
+  // 1. nav 를 저장한다.
+  const nav = $(".nav");
+  // 2. gnb 를 저장한다.
+  const gnb = $(".gnb");
+  // 3. gnb > li 를 저장한다.
+  const gnbLis = $(".gnb>li");
+
+  // 4. gnb > li 에 mouseenter 하면
+  // 해당하는 장소의 ul.depth2 를 보여준다.
+  $.each(gnbLis, function (index, item) {
+    // $(item)
+    $(this).mouseenter(function () {
+      // let depth2 = $("gnb>li>.depth2"); 버그
+      let depth2 = $(this).find(".depth2");
+      depth2.show();
+    });
+  });
+
+  // 5. gnb > li 에 mouseleave 하면
+  // 해당하는 장소의 ul.depth2 를 숨긴다.
+  $.each(gnbLis, function (index, item) {
+    $(this).mouseleave(function () {
+      let depth2 = $(this).find(".depth2");
+      depth2.hide();
+    });
+  });
+  // 메뉴 전체 보기 기능
+  const showAll = $(".showAll");
+  // 버튼을 클릭하면 .depth2 전부 보여라
+  // 버튼을 클릭하면 .depth2 전부 숨겨라
+  showAll.click(function () {
+    $(".depth2").toggle();
+  });
+  // gnb 에 마우스 올리면 .depth2 보여라
+  // gnb 에 마우스 아웃하면 .depth2 숨기기
+  gnb.mouseenter(function () {
+    $(".depth2").show(); // .depth2 보이게 함
+  });
+  gnb.mouseleave(function () {
+    $(".depth2").hide(); // .depth2 숨김
+  });
+
   // document.querySelector("body").classList.add("modalActive")
   $("body").addClass("modalActive");
 
